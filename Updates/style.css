@@ -1,0 +1,76 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.header {
+    background-color: #007BFF;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+/* Update form styles */
+.update-form {
+    margin-bottom: 2rem;
+}
+
+.update-form input, .update-form textarea, .update-form button {
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.update-form button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.update-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Update list styles */
+.update-list {
+    margin-top: 2rem;
+}
+
+.update-item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.update-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.update-content {
+    margin-top: 0.5rem;
+    color: #555;
+    line-height: 1.5;
+}
