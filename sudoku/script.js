@@ -62,13 +62,23 @@ document.addEventListener("DOMContentLoaded", () => {
   // Generate the Sudoku board
   for (let i = 0; i < 81; i++) {
     const input = document.createElement("input");
-    input.type = "number";
-    input.min = 1;
-    input.max = 9;
+    input.type = "text";
+    input.maxLength = 1;
+    input.dataset.index = i;
+    input.addEventListener("input", (e) => {
+      const value = e.target.value;
+      if (!/^[1-9]$/.test(value)) {
+        e.target.value = ""; // Clear invalid input
+      }
+    });
     board.appendChild(input);
+
+    // Add subgrid borders
+    if ((i % 9 === 2 || i % 9 === 5) && i % 9 !== 8) {
+      input.classList.add("subgrid-border");
+    }
   }
 
-  // Event listeners
   document.getElementById("solve").addEventListener("click", () => {
     const boardValues = getBoardValues();
     if (solveSudoku(boardValues)) {
