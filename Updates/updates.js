@@ -1,6 +1,11 @@
 // List of updates
 const updates = [
   {
+    title: "New Game Added: Minesweeper",
+    content: "We are excited to announce the addition of the minesweeper game to our website. Give it a try and test your skills!",
+    date: "2025-04-24",
+  }, 
+  {
     title: "New Game Added: Hangman",
     content: "We are excited to announce the addition of the Hangman game to our website. Give it a try and test your vocabulary skills!",
     date: "2025-04-20",
