@@ -37,12 +37,13 @@
   </div>
   <iframe id="gameFrame" src="" style="display:none;"></iframe>
   <script>
-    function loadGame(game) {
-      const frame = document.getElementById('gameFrame');
-      frame.src = `${game}/index.html`;
-      frame.style.display = 'block';
-      window.scrollTo({ top: frame.offsetTop, behavior: 'smooth' });
-    }
-  </script>
+  function loadGame(game) {
+    const frame = document.getElementById('gameFrame');
+    const base = window.location.pathname.replace(/\\/index\\.html$/, '');
+    frame.src = `${base}${game}/index.html`;
+    frame.style.display = 'block';
+    window.scrollTo({ top: frame.offsetTop, behavior: 'smooth' });
+  }
+</script>
 </body>
 </html>
