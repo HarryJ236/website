@@ -1,48 +1,66 @@
-// Selecting DOM elements
-const addUpdateForm = document.getElementById('addUpdateForm');
-const updatesContainer = document.getElementById('updatesContainer');
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
 
-// Event listener for form submission
-addUpdateForm.addEventListener('submit', function (e) {
-    e.preventDefault();
+header {
+  background-color: #007BFF;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+}
 
-    // Get user input
-    const title = document.getElementById('updateTitle').value.trim();
-    const content = document.getElementById('updateContent').value.trim();
+h1 {
+  margin: 0;
+}
 
-    // Validate input
-    if (!title || !content) {
-        alert('Please fill out both fields!');
-        return;
-    }
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-    // Add update to the list
-    addUpdateToList(title, content);
+#updates-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-    // Clear form fields
-    addUpdateForm.reset();
-});
+.update-item {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+}
 
-// Function to add an update to the list
-function addUpdateToList(title, content) {
-    // Create the update item container
-    const updateItem = document.createElement('div');
-    updateItem.className = 'update-item';
+.update-item h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
 
-    // Add title
-    const updateTitle = document.createElement('div');
-    updateTitle.className = 'update-title';
-    updateTitle.textContent = title;
+.update-item p {
+  margin: 0.5rem 0;
+  color: #555;
+}
 
-    // Add content
-    const updateContent = document.createElement('div');
-    updateContent.className = 'update-content';
-    updateContent.textContent = content;
+.update-item .date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-top: 0.5rem;
+}
 
-    // Append title and content to the update item
-    updateItem.appendChild(updateTitle);
-    updateItem.appendChild(updateContent);
-
-    // Append the update item to the updates container
-    updatesContainer.appendChild(updateItem);
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
