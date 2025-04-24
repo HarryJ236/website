@@ -1,16 +1,36 @@
-// Import puzzles from puzzles.js
 import puzzles from './puzzles.js';
 
 document.addEventListener("DOMContentLoaded", () => {
   const board = document.getElementById("sudoku-board");
+  const timerElement = document.getElementById("timer");
+  const statusElement = document.getElementById("game-status");
+  let timerInterval;
+
+  const startTimer = () => {
+    let seconds = 0;
+    timerInterval = setInterval(() => {
+      seconds++;
+      const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+      const secs = String(seconds % 60).padStart(2, '0');
+      timerElement.textContent = `Time: ${mins}:${secs}`;
+    }, 1000);
+  };
+
+  const stopTimer = () => {
+    clearInterval(timerInterval);
+  };
 
   const loadPuzzle = (puzzle) => {
     const inputs = document.querySelectorAll("#sudoku-board input");
     inputs.forEach((input, i) => {
       const value = puzzle[i];
       input.value = value !== "0" ? value : "";
-      input.disabled = value !== "0"; // Disable pre-filled cells
+      input.disabled = value !== "0";
     });
+    stopTimer();
+    timerElement.textContent = "Time: 00:00";
+    statusElement.textContent = "";
+    startTimer();
   };
 
   const getBoardValues = () => {
@@ -59,6 +79,39 @@ document.addEventListener("DOMContentLoaded", () => {
     return true;
   };
 
+  const checkWin = () => {
+    const boardValues = getBoardValues();
+    const isWin = solveSudoku([...boardValues]);
+    statusElement.textContent = isWin ? "You Win!" : "You Lose!";
+    statusElement.className = isWin ? "win" : "lose";
+    stopTimer();
+  };
+
+  const handleArrowKeys = (e) => {
+    const inputs = Array.from(document.querySelectorAll("#sudoku-board input"));
+    const currentIndex = inputs.indexOf(document.activeElement);
+    if (currentIndex !== -1) {
+      let nextIndex;
+      switch (e.key) {
+        case 'ArrowUp':
+          nextIndex = currentIndex - 9;
+          break;
+        case 'ArrowDown':
+          nextIndex = currentIndex + 9;
+          break;
+        case 'ArrowLeft':
+          nextIndex = currentIndex - 1;
+          break;
+        case 'ArrowRight':
+          nextIndex = currentIndex + 1;
+          break;
+      }
+      if (nextIndex >= 0 && nextIndex < 81) {
+        inputs[nextIndex].focus();
+      }
+    }
+  };
+
   // Generate the Sudoku board
   for (let i = 0; i < 81; i++) {
     const input = document.createElement("input");
@@ -68,24 +121,14 @@ document.addEventListener("DOMContentLoaded", () => {
     input.addEventListener("input", (e) => {
       const value = e.target.value;
       if (!/^[1-9]$/.test(value)) {
-        e.target.value = ""; // Clear invalid input
+        e.target.value = "";
       }
     });
     board.appendChild(input);
-
-    // Add subgrid borders
-    if ((i % 9 === 2 || i % 9 === 5) && i % 9 !== 8) {
-      input.classList.add("subgrid-border");
-    }
   }
 
   document.getElementById("solve").addEventListener("click", () => {
-    const boardValues = getBoardValues();
-    if (solveSudoku(boardValues)) {
-      setBoardValues(boardValues);
-    } else {
-      alert("No solution exists!");
-    }
+    checkWin();
   });
 
   document.getElementById("reset").addEventListener("click", () => {
@@ -97,6 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedPuzzle = event.target.value;
     loadPuzzle(puzzles[selectedPuzzle]);
   });
+
+  document.addEventListener("keydown", handleArrowKeys);
 
   // Load the first puzzle at the start
   loadPuzzle(puzzles[0]);
