@@ -48,4 +48,3 @@ document.addEventListener("DOMContentLoaded", () => {
   displayWord();
   updateStatus();
 });
-console.log('Game loaded.');
