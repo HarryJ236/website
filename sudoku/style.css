@@ -1,3 +1,9 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  padding: 2rem;
+}
+
 #sudoku-board {
   display: grid;
   grid-template-columns: repeat(9, 1fr);
@@ -17,6 +23,11 @@
   outline: 2px solid blue;
 }
 
-h1, button {
+#sudoku-board input:disabled {
+  background-color: #ddd;
+  color: black;
+}
+
+h1, button, select {
   text-align: center;
 }
