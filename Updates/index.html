@@ -1,36 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Channel</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Updates</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="header">
-        <h1>Website Update Channel</h1>
-    </header>
-
-    <main class="container">
-        <!-- Form to add updates -->
-        <section class="update-form">
-            <h2>Add a New Update</h2>
-            <form id="addUpdateForm">
-                <input type="text" id="updateTitle" placeholder="Update Title" required>
-                <textarea id="updateContent" rows="4" placeholder="Update Content" required></textarea>
-                <button type="submit">Add Update</button>
-            </form>
-        </section>
-
-        <!-- Display updates -->
-        <section class="update-list">
-            <h2>Latest Updates</h2>
-            <div id="updatesContainer">
-                <!-- Updates will be dynamically added here -->
-            </div>
-        </section>
-    </main>
-
-    <script src="script.js"></script>
+  <header>
+    <h1>Latest Updates</h1>
+  </header>
+  <main>
+    <section id="updates-container">
+      <!-- Updates will be dynamically loaded here -->
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Mini Games Hub</p>
+  </footer>
+  <script src="updates.js"></script>
 </body>
 </html>
