@@ -1,66 +1,51 @@
-/* General styles */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+// List of updates
+const updates = [
+  {
+    title: "New Game Added: Hangman",
+    content: "We are excited to announce the addition of the Hangman game to our website. Give it a try and test your vocabulary skills!",
+    date: "2025-04-20",
+  },
+  {
+    title: "UI Improvements",
+    content: "We've updated the user interface for a cleaner and more modern look across all games. Let us know what you think!",
+    date: "2025-04-15",
+  },
+  {
+    title: "Bug Fixes",
+    content: "Several bugs in the Sudoku game have been fixed for a smoother gameplay experience.",
+    date: "2025-04-10",
+  },
+];
+
+// Function to load updates into the page
+function loadUpdates() {
+  const container = document.getElementById("updates-container");
+
+  updates.forEach((update) => {
+    // Create the update item element
+    const updateItem = document.createElement("div");
+    updateItem.className = "update-item";
+
+    // Add title
+    const title = document.createElement("h2");
+    title.textContent = update.title;
+    updateItem.appendChild(title);
+
+    // Add content
+    const content = document.createElement("p");
+    content.textContent = update.content;
+    updateItem.appendChild(content);
+
+    // Add date
+    const date = document.createElement("div");
+    date.className = "date";
+    date.textContent = `Posted on: ${update.date}`;
+    updateItem.appendChild(date);
+
+    // Append the update item to the container
+    container.appendChild(updateItem);
+  });
 }
 
-header {
-  background-color: #007BFF;
-  color: white;
-  text-align: center;
-  padding: 1rem 0;
-}
-
-h1 {
-  margin: 0;
-}
-
-main {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-#updates-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.update-item {
-  background: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 1rem;
-}
-
-.update-item h2 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-}
-
-.update-item p {
-  margin: 0.5rem 0;
-  color: #555;
-}
-
-.update-item .date {
-  font-size: 0.9rem;
-  color: #888;
-  margin-top: 0.5rem;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #333;
-  color: white;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-}
+// Load updates when the page loads
+window.onload = loadUpdates;
