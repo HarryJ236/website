@@ -33,6 +33,22 @@ function handleGuess(letter) {
   displayWord();
   updateStatus();
 }
+  #restartButton {
+  display: block;
+  margin: 1rem auto;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#restartButton:hover {
+  background-color: #0056b3;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
