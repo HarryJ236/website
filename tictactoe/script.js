@@ -1,51 +1,113 @@
-body {
-  font-family: sans-serif;
-  text-align: center;
-  padding: 2rem;
+let currentPlayer = "X";
+let board = Array(9).fill(null);
+let gameMode = null;
+let scoreX = 0;
+let scoreO = 0;
+
+const cells = document.querySelectorAll(".cell");
+const statusDiv = document.getElementById("status");
+const boardDiv = document.getElementById("board");
+const gameModeDiv = document.getElementById("game-mode");
+const resetButton = document.getElementById("reset-button");
+const scoreXSpan = document.getElementById("score-x");
+const scoreOSpan = document.getElementById("score-o");
+
+function checkWinner() {
+  const winningCombinations = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6],
+  ];
+
+  for (const combination of winningCombinations) {
+    const [a, b, c] = combination;
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return board[a];
+    }
+  }
+
+  return board.includes(null) ? null : "Draw";
 }
 
-#board {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  gap: 5px;
-  justify-content: center;
-  margin: 20px auto;
+function handleCellClick(event) {
+  const cell = event.target;
+  const index = parseInt(cell.dataset.index);
+
+  if (!board[index]) {
+    board[index] = currentPlayer;
+    cell.textContent = currentPlayer;
+
+    const winner = checkWinner();
+    if (winner) {
+      if (winner === "X") scoreX++;
+      if (winner === "O") scoreO++;
+      updateScoreboard();
+      statusDiv.textContent = winner === "Draw" ? "It's a Draw!" : `${winner} Wins!`;
+      boardDiv.removeEventListener("click", handleCellClick);
+      resetButton.style.display = "block";
+      return;
+    }
+
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+
+    if (gameMode === "robot" && currentPlayer === "O") {
+      robotMove();
+    }
+  }
 }
 
-.cell {
-  width: 100px;
-  height: 100px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  font-size: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
+function robotMove() {
+  const emptyCells = board.map((value, index) => (value === null ? index : null)).filter(index => index !== null);
+  const randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+  
+  board[randomIndex] = "O";
+  cells[randomIndex].textContent = "O";
+
+  const winner = checkWinner();
+  if (winner) {
+    if (winner === "X") scoreX++;
+    if (winner === "O") scoreO++;
+    updateScoreboard();
+    statusDiv.textContent = winner === "Draw" ? "It's a Draw!" : `${winner} Wins!`;
+    boardDiv.removeEventListener("click", handleCellClick);
+    resetButton.style.display = "block";
+    return;
+  }
+
+  currentPlayer = "X";
 }
 
-.cell:hover {
-  background-color: #e0e0e0;
+function updateScoreboard() {
+  scoreXSpan.textContent = `Player X: ${scoreX}`;
+  scoreOSpan.textContent = `Player O: ${scoreO}`;
 }
 
-#game-mode button {
-  margin: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
+function resetGame() {
+  board = Array(9).fill(null);
+  cells.forEach(cell => {
+    cell.textContent = "";
+  });
+  currentPlayer = "X";
+  statusDiv.textContent = gameMode === "robot" ? "Player X's Turn" : "Player X's Turn";
+  resetButton.style.display = "none";
+  boardDiv.addEventListener("click", handleCellClick);
 }
 
-#scoreboard {
-  margin: 20px;
-  font-size: 18px;
-}
+document.getElementById("player-vs-player").addEventListener("click", () => {
+  gameMode = "player";
+  gameModeDiv.style.display = "none";
+  boardDiv.style.display = "grid";
+  resetButton.style.display = "block";
+  statusDiv.textContent = "Player X's Turn";
+});
 
-#status {
-  margin-top: 20px;
-  font-size: 20px;
-}
+document.getElementById("player-vs-robot").addEventListener("click", () => {
+  gameMode = "robot";
+  gameModeDiv.style.display = "none";
+  boardDiv.style.display = "grid";
+  resetButton.style.display = "block";
+  statusDiv.textContent = "Player X's Turn";
+});
 
-#reset-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
-}
+resetButton.addEventListener("click", resetGame);
+boardDiv.addEventListener("click", handleCellClick);
