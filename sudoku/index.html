@@ -1,16 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sudoku</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="script.js" defer></script>
 </head>
 <body>
   <h1>Sudoku</h1>
+  <select id="puzzle-selector">
+    <option value="0">Puzzle 1 (Easy)</option>
+    <option value="1">Puzzle 2 (Medium)</option>
+    <option value="2">Puzzle 3 (Hard)</option>
+  </select>
+  <div id="sudoku-board"></div>
   <button id="solve">Solve</button>
   <button id="reset">Reset</button>
-  <script src="script.js"></script>
 </body>
 </html>
