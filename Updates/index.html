@@ -14,10 +14,18 @@
     <section id="updates-container">
       <!-- Updates will be dynamically loaded here -->
     </section>
+    <!-- Back Button -->
+    <button id="back-button" onclick="goBack()">Back</button>
   </main>
   <footer>
     <p>&copy; 2025 Mini Games Hub</p>
   </footer>
+  <script>
+    // Function for going back to the previous page
+    function goBack() {
+      window.history.back();
+    }
+  </script>
   <script src="updates.js"></script>
 </body>
 </html>
