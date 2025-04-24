@@ -1,1 +1,22 @@
-body { font-family: sans-serif; text-align: center; padding: 2rem; }
+#sudoku-board {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 1px;
+  width: 360px;
+  margin: auto;
+}
+
+#sudoku-board input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+#sudoku-board input:focus {
+  outline: 2px solid blue;
+}
+
+h1, button {
+  text-align: center;
+}
