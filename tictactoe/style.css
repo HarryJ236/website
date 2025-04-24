@@ -1,51 +1,108 @@
+/* General Styles */
 body {
   font-family: sans-serif;
   text-align: center;
   padding: 2rem;
+  margin: 0;
+  background-color: #f8f9fa;
+  color: #333;
 }
 
+/* Board Styling */
 #board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
-  gap: 5px;
+  gap: 10px;
   justify-content: center;
   margin: 20px auto;
+  padding: 10px;
+  border: 2px solid #333;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Cell Styling */
 .cell {
   width: 100px;
   height: 100px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
+  background-color: #e9ecef;
+  border: 2px solid #868e96;
   font-size: 36px;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .cell:hover {
-  background-color: #e0e0e0;
+  background-color: #dee2e6;
+  transform: scale(1.05);
 }
 
-#game-mode button {
+.cell:active {
+  background-color: #ced4da;
+  transform: scale(1);
+}
+
+/* Button Styling */
+button {
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+button:hover {
+  background-color: #0056b3;
+}
+
+button:active {
+  background-color: #004085;
+}
+
+/* Scoreboard Styling */
 #scoreboard {
-  margin: 20px;
+  margin: 20px auto;
   font-size: 18px;
+  font-weight: bold;
+  color: #495057;
 }
 
+/* Status Styling */
 #status {
   margin-top: 20px;
   font-size: 20px;
+  font-weight: bold;
+  color: #212529;
 }
 
+/* Reset Button */
 #reset-button {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#reset-button:hover {
+  background-color: #c82333;
+}
+
+#reset-button:active {
+  background-color: #bd2130;
 }
