@@ -1,0 +1,134 @@
+/* General Styles */
+ body {
+   font-family: Arial, sans-serif;
+   text-align: center;
+   padding: 1rem;
+   background-color: #f7f7f7;
+   margin: 0;
+ }
+ 
+ main {
+   max-width: 400px;
+   margin: auto;
+   padding: 1rem;
+   background: #ffffff;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ }
+ 
+ h1 {
+   margin: 0.5rem 0 1rem;
+   color: #333;
+ }
+ 
+ /* Sudoku Board */
+ #sudoku-board {
+   display: grid;
+   grid-template-columns: repeat(9, 1fr);
+   gap: 0; /* Removed gap for cleaner border styling */
+   width: 100%;
+   border: 2px solid #000;
+   margin: 1rem auto;
+   background-color: #000;
+ }
+ 
+ #sudoku-board input {
+   width: 100%;
+   height: 40px;
+   text-align: center;
+   font-size: 1.2rem;
+   border: none;
+   background: #fff;
+   color: #333;
+ }
+ 
+ #sudoku-board input:focus {
+   outline: 2px solid #007bff;
+ }
+ 
+ #sudoku-board input:disabled {
+   background-color: #e0e0e0;
+   color: black;
+ }
+ 
+ /* Distinct Grid Borders */
+ #sudoku-board div:nth-child(3n) {
+   border-bottom: 2px solid black; /* Thicker border after every 3 rows */
+ }
+ 
+ #sudoku-board div:nth-child(3n + 1) {
+   border-left: 2 px remove!
+ Here is the full and corrected CSS update to make the Sudoku grids more distinct with thicker borders for the subgrids:
+ 
+ ---
+ 
+ ```css name=style.css
+ /* General Styles */
+ body {
+   font-family: Arial, sans-serif;
+   text-align: center;
+   padding: 1rem;
+   background-color: #f7f7f7;
+   margin: 0;
+ }
+ 
+ main {
+   max-width: 400px;
+   margin: auto;
+   padding: 1rem;
+   background: #ffffff;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ }
+ 
+ h1 {
+   margin: 0.5rem 0 1rem;
+   color: #333;
+ }
+ 
+ /* Sudoku Board */
+ #sudoku-board {
+   display: grid;
+   grid-template-columns: repeat(9, 1fr);
+   gap: 1px; /* Small gaps for clarity */
+   width: 100%;
+   border: 4px solid #000; /* Thick outer border */
+   margin: 1rem auto;
+   background-color: #000;
+ }
+ 
+ #sudoku-board input {
+   width: 100%;
+   height: 40px;
+   text-align: center;
+   font-size: 1.2rem;
+   border: none;
+   background: #fff;
+   color: #333;
+ }
+ 
+ #sudoku-board input:focus {
+   outline: 2px solid #007bff;
+ }
+ 
+ #sudoku-board input:disabled {
+   background-color: #e0e0e0;
+   color: black;
+ }
+ 
+ /* Subgrid Borders */
+ #sudoku-board input:nth-child(3n) {
+   border-right: 2px solid black; /* Thicker border after every 3 cells */
+ }
+ 
+ #sudoku-board input:nth-child(27n) {
+   border-bottom: 2px solid black; /* Thicker border after every 3 rows */
+ }
+ 
+ #sudoku-board input:nth-child(3n + 1) {
+   border-left: 2px solid black; /* Thicker left border for new subgrids */
+ }
+ 
+ #sudoku-board input:nth-child(1) {
+   border-top: 4px solid #000; /* Topmost thick border */
+ }
